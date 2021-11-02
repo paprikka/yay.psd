@@ -1,5 +1,16 @@
 .container {
-  min-width: 4rem;
+  position: sticky;
+  top: 1rem;
+  z-index: 3;
+  background-color: yellow;
+}
+
+@media all and (min-width: 440px) {
+  .container {
+    min-width: 4rem;
+    position: relative;
+    top: unset;
+  }
 }
 
 .list {
