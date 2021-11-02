@@ -12,13 +12,16 @@ export const Grid: FC<GridProps> = ({ entries }) => (
     {entries.map((entry) => (
       <li key={entry.id} className={styles.entry}>
         <Link href={`/p/${entry.id}`}>
-          <a>
-            <Image
-              src={"https:" + entry.images[0].url}
-              alt={entry.title}
-              width={entry.images[0].width}
-              height={entry.images[0].height}
-            />
+          <a className={styles.link}>
+            <figure className={styles.imageWrapper}>
+              <Image
+                src={"https:" + entry.images[0].url}
+                alt={entry.title}
+                width={entry.images[0].width}
+                height={entry.images[0].height}
+              />
+              <figcaption className={styles.caption}>{entry.title}</figcaption>
+            </figure>
           </a>
         </Link>
       </li>

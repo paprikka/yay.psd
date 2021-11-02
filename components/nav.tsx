@@ -5,12 +5,12 @@ export const Nav = () => (
     <ul className={styles.list}>
       <li className={styles.item}>
         <Link href="/">
-          <a>All</a>
+          <a className={styles.link}>All</a>
         </Link>
       </li>
       <li className={styles.item}>
         <Link href="/">
-          <a>About</a>
+          <a className={styles.link}>About</a>
         </Link>
       </li>
     </ul>

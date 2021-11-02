@@ -1,15 +1,17 @@
 .container {
   position: sticky;
-  top: 1rem;
+  top: 0;
   z-index: 3;
-  background-color: yellow;
+  background-color: var(--page-bg-color);
+  padding: 1rem;
 }
 
 @media all and (min-width: 440px) {
   .container {
-    min-width: 4rem;
+    min-width: calc(25vw - 2rem);
     position: relative;
     top: unset;
+    padding: 0;
   }
 }
 
@@ -17,11 +19,39 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media all and (min-width: 440px) {
+  .list {
+    flex-direction: column;
+    justify-content: unset;
+  }
 }
 
 .item {
+  margin-right: 1rem;
+}
+@media all and (min-width: 440px) {
+  .item {
+    margin-bottom: 0.5rem;
+  }
+}
+.item:last-child {
+  margin-right: 0;
 }
 
 .item:hover {
+  font-weight: 600;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--link-color);
+  font-weight: 500;
+}
+
+.link:hover {
   font-weight: 600;
 }
