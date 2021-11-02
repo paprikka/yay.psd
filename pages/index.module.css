@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  padding: 1rem;
+  background-color: yellow;
+  min-height: 100vh;
+}
