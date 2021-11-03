@@ -81,7 +81,7 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
     <div className={styles.container}>
       <div className={styles.meta}>
         <h1>{entry.title}</h1>
-        <p className={styles.createdAt}>{formatDate(entry.createdAt)}</p>
+        <p className={styles.createdAt}>{formatDate(entry.publishedAt)}</p>
         {entry.description ? (
           <p className={styles.description}>{entry.description}</p>
         ) : null}

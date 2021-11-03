@@ -5,6 +5,7 @@ interface ContentfulEntryProps {
   images: Asset[];
   slug: string;
   description?: string;
+  publicationDateOverride?: string;
 }
 
 export interface PostEntry {
@@ -12,7 +13,7 @@ export interface PostEntry {
   title: string;
   slug: string;
   images: PostImage[];
-  createdAt: string;
+  publishedAt: string;
   description: string | null;
 }
 
@@ -37,7 +38,9 @@ const toPostEntry = (
   title: contentfulEntry.fields.title,
   slug: contentfulEntry.fields.slug,
   images: (contentfulEntry.fields.images || []).map(assetToPostImage),
-  createdAt: contentfulEntry.sys.createdAt,
+  publishedAt:
+    contentfulEntry.fields.publicationDateOverride ||
+    contentfulEntry.sys.createdAt,
   description: contentfulEntry.fields.description || null,
 });
 
@@ -49,7 +52,8 @@ export const getAllPostIds = (): Promise<string[]> => {
 
   return client
     .getEntries<ContentfulEntryProps>({
-      order: "sys.createdAt",
+      order: "-fields.publicationDateOverride,-sys.createdAt",
+      content_type: "imagePost",
     })
     .then((collection) => collection.items)
     .then((items) => items.map((item) => item.sys.id));
@@ -62,17 +66,22 @@ export const getPage = (): Promise<PostEntry[]> => {
 
   return client
     .getEntries<ContentfulEntryProps>({
-      order: "-sys.createdAt",
+      order: "-fields.publicationDateOverride,-sys.createdAt",
+      content_type: "imagePost",
     })
+
     .then((collection) => collection.items)
     .then((items) => items.map(toPostEntry));
 };
 
-export const getSingleEntryPage = (entryId: string): Promise<PostEntry> => {
+export const getSingleEntryPage = async (
+  entryId: string
+): Promise<PostEntry> => {
   const client = createClient({
     accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN!,
     space: process.env.CF_SPACE_ID!,
   });
-
-  return client.getEntry<ContentfulEntryProps>(entryId).then(toPostEntry);
+  // publicationDateOverride
+  const entry = await client.getEntry<ContentfulEntryProps>(entryId);
+  return toPostEntry(entry);
 };

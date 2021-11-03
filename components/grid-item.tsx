@@ -22,7 +22,7 @@ export const GridItem: FC<GridItemProps> = ({ entry }) => {
           <figcaption className={styles.caption}>
             <span className={styles.title}>{entry.title}</span>
             <span className={styles.createdAt}>
-              {formatDate(entry.createdAt)}
+              {formatDate(entry.publishedAt)}
             </span>
           </figcaption>
         </figure>
