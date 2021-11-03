@@ -12,7 +12,6 @@ export const useRainbowBg = () =>
 
       const h = from + (to - from) * progress;
       document.body.style.backgroundColor = `hsl(${h}deg 100% 50%)`;
-      console.log(progress);
     };
     window.addEventListener("scroll", cb, { passive: true });
     return () => window.removeEventListener("scroll", cb);

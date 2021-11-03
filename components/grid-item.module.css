@@ -1,0 +1,35 @@
+.container {
+  display: block;
+}
+
+.container:hover {
+  opacity: 0.6;
+}
+.container:active {
+  opacity: 1;
+}
+
+/* I don't like CSS modules */
+.link {
+  text-decoration: none;
+}
+.imageWrapper {
+  margin-bottom: 2rem;
+}
+.caption {
+  text-align: left;
+  margin-top: 0.5rem;
+  display: flex;
+  align-content: center;
+  align-items: baseline;
+}
+
+.title {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.createdAt {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}

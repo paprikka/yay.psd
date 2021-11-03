@@ -19,7 +19,6 @@ const NavLink: FC<NavLinkProps> = ({ to, currentPath, label }) => {
 };
 export const Nav = () => {
   const router = useRouter();
-  console.log(router);
   return (
     <nav className={styles.container}>
       <ul className={styles.list}>
