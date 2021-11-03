@@ -9,10 +9,11 @@ import {
 import { SinglePost } from "../../components/single-post";
 interface PostPageProps {
   entry: PostEntry;
+  allPostIds: string[];
 }
-const PostPage: NextPage<PostPageProps> = ({ entry }) => (
+const PostPage: NextPage<PostPageProps> = ({ entry, allPostIds }) => (
   <PageContainer>
-    <SinglePost entry={entry} />
+    <SinglePost entry={entry} allPostIds={allPostIds} />
   </PageContainer>
 );
 
@@ -23,9 +24,13 @@ export const getStaticProps: GetStaticProps<PostPageProps, { id: string }> =
         notFound: true,
       };
 
+    const entry = await getSingleEntryPage(context.params?.id!);
+    const allPostIds = await getAllPostIds();
+
     return {
       props: {
-        entry: await getSingleEntryPage(context.params?.id!),
+        entry,
+        allPostIds,
       },
     };
   };

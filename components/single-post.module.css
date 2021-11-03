@@ -31,3 +31,39 @@
   opacity: 0.6;
   margin-bottom: 1rem;
 }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.navLink,
+.navLinkDisabled {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background: transparent no-repeat center;
+  background-size: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navLink:hover {
+  transform: scale(1.1);
+}
+.navLink:active {
+  transform: scale(0.9);
+}
+
+.navLinkPrev {
+  background-image: url("./grid-item/prev.png");
+}
+.navLinkRandom {
+  background-image: url("./grid-item/random.png");
+}
+.navLinkNext {
+  background-image: url("./grid-item/next.png");
+}
+.navLinkDisabled {
+  opacity: 0.3;
+}
