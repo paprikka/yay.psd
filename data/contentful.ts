@@ -11,6 +11,7 @@ export interface PostEntry {
   title: string;
   slug: string;
   images: PostImage[];
+  createdAt: string;
 }
 
 export interface PostImage {
@@ -34,6 +35,7 @@ const toPostEntry = (
   title: contentfulEntry.fields.title,
   slug: contentfulEntry.fields.slug,
   images: (contentfulEntry.fields.images || []).map(assetToPostImage),
+  createdAt: contentfulEntry.sys.createdAt,
 });
 
 export const getAllPostIds = (): Promise<string[]> => {

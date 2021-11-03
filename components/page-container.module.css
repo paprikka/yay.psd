@@ -7,11 +7,17 @@
   align-items: flex-start;
 
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 2rem auto 0;
 }
 
 @media all and (min-width: 440px) {
-  .container {
-    flex-direction: row;
+  .siteLogo {
+    width: 20%;
   }
+}
+
+.siteLogo {
+  align-self: center;
+  width: 40%;
+  margin-bottom: 2rem;
 }

@@ -7,6 +7,16 @@ import Link from "next/link";
 interface GridProps {
   entries: PostEntry[];
 }
+
+const formatDate = (dateString: string): string => {
+  return new Intl.DateTimeFormat("en-GB", {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(dateString));
+};
+
 export const Grid: FC<GridProps> = ({ entries }) => (
   <ul className={styles.container}>
     {entries.map((entry) => (
@@ -20,7 +30,12 @@ export const Grid: FC<GridProps> = ({ entries }) => (
                 width={entry.images[0].width}
                 height={entry.images[0].height}
               />
-              <figcaption className={styles.caption}>{entry.title}</figcaption>
+              <figcaption className={styles.caption}>
+                <span className={styles.title}>{entry.title}</span>
+                <span className={styles.createdAt}>
+                  {formatDate(entry.createdAt)}
+                </span>
+              </figcaption>
             </figure>
           </a>
         </Link>

@@ -1,22 +1,23 @@
 .container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
   padding: 0;
   margin: 0;
-}
-
-@media all and (min-width: 440px) {
-  .container {
-    grid-template-columns: 3fr 3fr 3fr;
-  }
 }
 
 .entry {
   padding: 0;
   margin: 0;
   list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.2s opacity;
 }
+
+.entry:hover {
+  opacity: 0.8;
+}
+.entry:active {
+  opacity: 1;
+}
+
 /* I don't like CSS modules */
 .link {
   text-decoration: none;
@@ -27,4 +28,17 @@
 .caption {
   text-align: left;
   margin-top: 0.5rem;
+  display: flex;
+  align-content: center;
+  align-items: baseline;
+}
+
+.title {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.createdAt {
+  font-size: 0.75rem;
+  opacity: 0.6;
 }

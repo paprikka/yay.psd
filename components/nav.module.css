@@ -1,18 +1,10 @@
 .container {
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  background-color: var(--page-bg-color);
+  /* position: sticky; */
+  /* top: 0; */
+  /* z-index: 3; */
+  /* background-color: var(--page-bg-color); */
   padding: 1rem;
-}
-
-@media all and (min-width: 440px) {
-  .container {
-    min-width: calc(25vw - 2rem);
-    position: relative;
-    top: unset;
-    padding: 0;
-  }
+  width: 100%;
 }
 
 .list {
@@ -20,14 +12,8 @@
   padding: 0;
   margin: 0;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-}
-
-@media all and (min-width: 440px) {
-  .list {
-    flex-direction: column;
-    justify-content: unset;
-  }
 }
 
 .item {
@@ -54,4 +40,7 @@
 
 .link:hover {
   font-weight: 600;
+}
+.linkCurrent {
+  font-weight: bold;
 }
