@@ -12,8 +12,8 @@ const About: NextPage<PageProps> = () => (
       <h1>Hi there</h1>
       <p>
         My name is Rafal Pastuszak (just like the words <em>pasta</em> and{" "}
-        <em>shack</em>). I'm a tinkerer/software engineer currently based in
-        Portugal.
+        <em>shack</em>). I&rsquo;m a tinkerer/software engineer currently based
+        in Portugal.
       </p>
       <h2>Contact</h2>
       <ul>
