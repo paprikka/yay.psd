@@ -5,23 +5,14 @@ import {
   getSingleEntryPage,
   getAllPostIds,
 } from "../../data/contentful";
-import Image from "next/image";
+
+import { SinglePost } from "../../components/single-post";
 interface PostPageProps {
   entry: PostEntry;
 }
 const PostPage: NextPage<PostPageProps> = ({ entry }) => (
   <PageContainer>
-    <div>
-      {entry.images.map((image) => (
-        <Image
-          key={image.id}
-          src={"https:" + image.url}
-          alt={entry.title}
-          width={image.width}
-          height={image.height}
-        />
-      ))}
-    </div>
+    <SinglePost entry={entry} />
   </PageContainer>
 );
 

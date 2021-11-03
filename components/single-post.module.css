@@ -1,0 +1,33 @@
+.container {
+  --separator-height: 5rem;
+}
+
+.imageWrapper {
+  margin-bottom: calc(var(--separator-height) + 0.25rem);
+  position: relative;
+}
+
+.separator {
+  position: absolute;
+  bottom: calc(var(--separator-height) * -1);
+  left: 0;
+  right: 0;
+  height: var(--separator-height);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.meta {
+  margin-bottom: 2rem;
+}
+
+.image {
+  margin-bottom: var(--separator-height);
+  vertical-align: bottom;
+}
+
+.createdAt {
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
