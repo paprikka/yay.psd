@@ -3,19 +3,10 @@ import styles from "./grid-item.module.css";
 import Link from "next/link";
 import { PostEntry } from "../data/contentful";
 import { FC } from "react";
-
+import { formatDate } from "../data/format-date";
 interface GridItemProps {
   entry: PostEntry;
 }
-
-const formatDate = (dateString: string): string => {
-  return new Intl.DateTimeFormat("en-GB", {
-    weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  }).format(new Date(dateString));
-};
 
 export const GridItem: FC<GridItemProps> = ({ entry }) => {
   return (
