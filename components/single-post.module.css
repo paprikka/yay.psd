@@ -22,6 +22,15 @@
   margin-bottom: 2rem;
 }
 
+.description {
+  white-space: pre-wrap;
+}
+
+.title {
+  margin: 0 0 1rem;
+  line-height: 1;
+}
+
 .image {
   margin-bottom: var(--separator-height);
   vertical-align: bottom;
