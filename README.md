@@ -7,3 +7,4 @@
 [ ] Upload content
 [ ] Cache Contentful assets
 [ ] RSS feed
+[ ] Display post descriptions

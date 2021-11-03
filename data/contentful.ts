@@ -4,6 +4,7 @@ interface ContentfulEntryProps {
   title: string;
   images: Asset[];
   slug: string;
+  description?: string;
 }
 
 export interface PostEntry {
@@ -12,6 +13,7 @@ export interface PostEntry {
   slug: string;
   images: PostImage[];
   createdAt: string;
+  description: string | null;
 }
 
 export interface PostImage {
@@ -36,6 +38,7 @@ const toPostEntry = (
   slug: contentfulEntry.fields.slug,
   images: (contentfulEntry.fields.images || []).map(assetToPostImage),
   createdAt: contentfulEntry.sys.createdAt,
+  description: contentfulEntry.fields.description || null,
 });
 
 export const getAllPostIds = (): Promise<string[]> => {
@@ -59,7 +62,7 @@ export const getPage = (): Promise<PostEntry[]> => {
 
   return client
     .getEntries<ContentfulEntryProps>({
-      order: "sys.createdAt",
+      order: "-sys.createdAt",
     })
     .then((collection) => collection.items)
     .then((items) => items.map(toPostEntry));

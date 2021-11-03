@@ -76,15 +76,15 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
   const otherPostIds = allPostIds.filter((pId) => pId !== entry.id);
   const randomPostId =
     otherPostIds[Math.floor(Math.random() * otherPostIds.length)];
+
   return (
     <div className={styles.container}>
       <div className={styles.meta}>
         <h1>{entry.title}</h1>
         <p className={styles.createdAt}>{formatDate(entry.createdAt)}</p>
-        <p className={styles.description}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem ex
-          tenetur sint rem esse quos deleniti, qui, optio aliquid id
-        </p>
+        {entry.description ? (
+          <p className={styles.description}>{entry.description}</p>
+        ) : null}
       </div>
 
       {entry.images.map((image, ind) => (
