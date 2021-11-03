@@ -1,0 +1,49 @@
+.container {
+}
+
+.container p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.container h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+}
+
+.container h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+
+.container a {
+  color: var(--link-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.container a:hover {
+  box-shadow: 0 0.125rem 0 var(--link-color);
+}
+.container a:active {
+  transform: scale(0.95);
+}
+.container ul {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.container li {
+  position: relative;
+  line-height: 1.4;
+}
+
+.container li:before {
+  content: "‧";
+  position: absolute;
+  left: -0.75rem;
+  top: -0.04rem;
+}
