@@ -3,7 +3,7 @@ import { createClient, Asset, Entry } from "contentful";
 interface ContentfulEntryProps {
   title: string;
   images: Asset[];
-  slug: string;
+  slug?: string;
   description?: string;
   publicationDateOverride?: string;
 }
@@ -11,7 +11,7 @@ interface ContentfulEntryProps {
 export interface PostEntry {
   id: string;
   title: string;
-  slug: string;
+  slug: string | null;
   images: PostImage[];
   publishedAt: string;
   description: string | null;
@@ -38,7 +38,7 @@ const toPostEntry = (
 ): PostEntry => ({
   id: contentfulEntry.sys.id,
   title: contentfulEntry.fields.title,
-  slug: contentfulEntry.fields.slug,
+  slug: contentfulEntry.fields.slug || null,
   images: (contentfulEntry.fields.images || []).map(assetToPostImage),
   publishedAt:
     contentfulEntry.fields.publicationDateOverride ||
