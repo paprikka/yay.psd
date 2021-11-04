@@ -46,7 +46,7 @@ const toPostEntry = (
   description: contentfulEntry.fields.description || null,
 });
 
-export const getAllPostIds = (): Promise<string[]> => {
+const getAllPostEntries = () => {
   const client = createClient({
     accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN!,
     space: process.env.CF_SPACE_ID!,
@@ -57,24 +57,13 @@ export const getAllPostIds = (): Promise<string[]> => {
       order: "-fields.publicationDateOverride,-sys.createdAt",
       content_type: "imagePost",
     })
-    .then((collection) => collection.items)
-    .then((items) => items.map((item) => item.sys.id));
+    .then((collection) => collection.items);
 };
-export const getPage = (): Promise<PostEntry[]> => {
-  const client = createClient({
-    accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN!,
-    space: process.env.CF_SPACE_ID!,
-  });
+export const getAllPostIds = (): Promise<string[]> =>
+  getAllPostEntries().then((items) => items.map((item) => item.sys.id));
 
-  return client
-    .getEntries<ContentfulEntryProps>({
-      order: "-fields.publicationDateOverride,-sys.createdAt",
-      content_type: "imagePost",
-    })
-
-    .then((collection) => collection.items)
-    .then((items) => items.map(toPostEntry));
-};
+export const getPage = (): Promise<PostEntry[]> =>
+  getAllPostEntries().then((items) => items.map(toPostEntry));
 
 export const getSingleEntryPage = async (
   entryId: string
