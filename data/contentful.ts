@@ -25,7 +25,7 @@ export interface PostImage {
   contentType: string;
 }
 
-const assetToPostImage = (asset: Asset): PostImage => ({
+export const assetToPostImage = (asset: Asset): PostImage => ({
   id: asset.sys.id,
   width: asset.fields.file.details.image?.width || 0,
   height: asset.fields.file.details.image?.height || 0,
