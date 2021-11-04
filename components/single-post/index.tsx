@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 import { PostEntry } from "../../data/contentful";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { formatDate } from "../../data/format-date";
 
 import { Separator } from "./separator";

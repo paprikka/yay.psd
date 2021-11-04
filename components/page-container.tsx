@@ -6,11 +6,13 @@ import { useRainbowBg } from "../hooks/use-rainbow-bg";
 import Image from "next/image";
 import logo from "./logo.png";
 import Link from "next/link";
+import { useFavicon } from "../hooks/use-favicon";
 interface PageContainerProps {
   children: React.ReactNode;
 }
 export const PageContainer: FC<PageContainerProps> = ({ children }) => {
   useRainbowBg();
+  useFavicon();
   return (
     <div className={styles.container}>
       <Link href="/">

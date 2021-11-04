@@ -5,8 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 interface PageProps {}
 import headerImg from "../components/about-header.png";
+import { PageHead } from "../components/head";
 const About: NextPage<PageProps> = () => (
   <PageContainer>
+    <PageHead />
     <article className={styles.container}>
       <Image src={headerImg} alt="Rafal Pastuszak" />
       <h1>Hi there</h1>
