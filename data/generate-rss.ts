@@ -12,9 +12,18 @@ const imageToMarkup = (image: PostImage, entry: PostEntry): string => {
 const postEntryToMarkup = (entry: PostEntry) => {
   return `
         <h1>${entry.title}</h1>
-        <p>${entry.description}</p>
-        ${entry.images.map((image) => imageToMarkup(image, entry))}
-    
+        ${entry.description ? `<p>${entry.description}</p>` : "<br>"}
+        ${entry.images.map((image) => imageToMarkup(image, entry)).join("<br>")}
+        <hr>
+        <p>
+            Thanks for reading! Feel free to check out my other work here <a href='${
+              siteConfig.url
+            }'>here</a>. 
+        </p>
+        <p>
+        Peace, love and pixels, <br>
+        Rafal.
+        </p>
     `;
 };
 
