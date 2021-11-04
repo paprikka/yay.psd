@@ -1,0 +1,29 @@
+.navLink,
+.navLinkDisabled {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background: transparent no-repeat center;
+  background-size: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navLink:hover {
+  transform: scale(1.1);
+}
+.navLink:active {
+  transform: scale(0.9);
+}
+
+.navLinkPrev {
+  background-image: url("./prev.png");
+}
+.navLinkRandom {
+  background-image: url("./random.png");
+}
+.navLinkNext {
+  background-image: url("./next.png");
+}
+.navLinkDisabled {
+  opacity: 0.3;
+}

@@ -5,14 +5,16 @@ import {
   getSingleEntryPage,
   getAllPostIds,
 } from "../../data/contentful";
-
+import { siteConfig } from "../../data/site-config";
 import { SinglePost } from "../../components/single-post";
+import { PageHead } from "../../components/head";
 interface PostPageProps {
   entry: PostEntry;
   allPostIds: string[];
 }
 const PostPage: NextPage<PostPageProps> = ({ entry, allPostIds }) => (
   <PageContainer>
+    <PageHead title={`${entry.title}: ${siteConfig.title}`} />
     <SinglePost entry={entry} allPostIds={allPostIds} />
   </PageContainer>
 );
