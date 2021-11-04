@@ -5,16 +5,36 @@ import {
   getSingleEntryPage,
   getAllPostIds,
 } from "../../data/contentful";
-import { siteConfig } from "../../data/site-config";
+import { siteConfig, SiteConfigImage } from "../../data/site-config";
 import { SinglePost } from "../../components/single-post";
 import { PageHead } from "../../components/head";
 interface PostPageProps {
   entry: PostEntry;
   allPostIds: string[];
 }
+
+const getSocialImage = (
+  entry: PostEntry,
+  defaultImage: SiteConfigImage
+): SiteConfigImage => {
+  const maybeImage = Array.isArray(entry.images)
+    ? entry.images.find((img) => img.contentType.split("/")[0] === "image")
+    : null;
+
+  if (!maybeImage) return defaultImage;
+  return {
+    absoluteUrl: "https:" + maybeImage.url,
+    height: maybeImage.height,
+    width: maybeImage.width,
+  };
+};
+
 const PostPage: NextPage<PostPageProps> = ({ entry, allPostIds }) => (
   <PageContainer>
-    <PageHead title={`${entry.title}: ${siteConfig.title}`} />
+    <PageHead
+      title={`${entry.title}: ${siteConfig.title}`}
+      socialImage={getSocialImage(entry, siteConfig.socialImage)}
+    />
     <SinglePost entry={entry} allPostIds={allPostIds} />
   </PageContainer>
 );
