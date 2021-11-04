@@ -1,4 +1,4 @@
-import { Feed } from "feed";
+import { Author, Feed } from "feed";
 import fs from "fs/promises";
 import { PostEntry, PostImage } from "../data/contentful";
 import { siteConfig } from "../data/site-config";
@@ -12,13 +12,15 @@ const imageToMarkup = (image: PostImage, entry: PostEntry): string => {
 const postEntryToMarkup = (entry: PostEntry) => {
   return `
         <h1>${entry.title}</h1>
-        ${entry.description ? `<p>${entry.description}</p>` : "<br>"}
+        ${entry.description ? `<p>${entry.description}</p>` : ""}
         ${entry.images.map((image) => imageToMarkup(image, entry)).join("<br>")}
         <hr>
         <p>
-            Thanks for reading! Feel free to check out my other work here <a href='${
+            Thanks for reading! Feel free to check out my other works <a href='${
               siteConfig.url
             }'>here</a>. 
+            <br><br>
+            Also, why not <a href='https://sonnet.io/posts/hi/'> come and say hi</a>?
         </p>
         <p>
         Peace, love and pixels, <br>
@@ -28,9 +30,8 @@ const postEntryToMarkup = (entry: PostEntry) => {
 };
 
 export const generateRSSFeed = (entries: PostEntry[]) => {
-  const author = {
+  const author: Author = {
     name: siteConfig.author,
-    email: "hello@sonnet.io",
     link: "https://twitter.com/yay_psd",
   };
   const feed = new Feed({
