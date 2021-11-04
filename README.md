@@ -1,11 +1,11 @@
 ## TODO
 
-[ ] Twitter syndication
-[ ] OpenGraph tags
-[ ] Shop
-[ ] About me copy and links
 [ ] Upload content
+[ ] About me copy and links
+[ ] Twitter syndication
 [ ] Cache Contentful assets
 [ ] RSS feed
-[ ] Display post descriptions
-[ ] Render video content
+[ ] Shop
+[x] OpenGraph tags
+[x] Display post descriptions
+[x] Render video content
