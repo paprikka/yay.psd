@@ -22,6 +22,7 @@ export interface PostImage {
   width: number;
   height: number;
   url: string;
+  contentType: string;
 }
 
 const assetToPostImage = (asset: Asset): PostImage => ({
@@ -29,6 +30,7 @@ const assetToPostImage = (asset: Asset): PostImage => ({
   width: asset.fields.file.details.image?.width || 0,
   height: asset.fields.file.details.image?.height || 0,
   url: asset.fields.file.url,
+  contentType: asset.fields.file.contentType,
 });
 
 const toPostEntry = (
@@ -81,7 +83,7 @@ export const getSingleEntryPage = async (
     accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN!,
     space: process.env.CF_SPACE_ID!,
   });
-  // publicationDateOverride
+
   const entry = await client.getEntry<ContentfulEntryProps>(entryId);
   return toPostEntry(entry);
 };

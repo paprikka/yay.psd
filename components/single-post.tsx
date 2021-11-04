@@ -1,8 +1,7 @@
-import Image from "next/image";
 import styles from "./single-post.module.css";
 import Link from "next/link";
 import { PostEntry } from "../data/contentful";
-import { FC, ReactNode, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { formatDate } from "../data/format-date";
 
 interface SinglePostProps {
@@ -20,6 +19,7 @@ import separator1 from "./grid-item/arrow_1.png";
 import separator2 from "./grid-item/arrow_2.png";
 import separator3 from "./grid-item/arrow_3.png";
 import separatorFinal from "./grid-item/arrow_final.png";
+import { AssetRenderer } from "./renderers/asset";
 
 const separators = [separator0, separator1, separator2, separator3];
 
@@ -89,13 +89,7 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
 
       {entry.images.map((image, ind) => (
         <div key={image.id} className={styles.imageWrapper}>
-          <Image
-            src={"https:" + image.url}
-            alt={entry.title}
-            width={image.width}
-            height={image.height}
-            className={styles.image}
-          />
+          <AssetRenderer entry={entry} image={image} />
           <Separator index={ind} max={entry.images.length - 1} />
         </div>
       ))}
