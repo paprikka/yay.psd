@@ -12,6 +12,6 @@ export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => (
     muted
     autoPlay
     loop
-    controls
+    playsInline
   />
 );
