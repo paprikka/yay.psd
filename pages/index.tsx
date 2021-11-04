@@ -3,6 +3,7 @@ import { getPage, PostEntry } from "../data/contentful";
 import { Grid } from "../components/grid";
 import { PageContainer } from "../components/page-container";
 import { PageHead } from "../components/head";
+import { generateRSSFeed } from "../data/generate-rss";
 interface PageProps {
   entries: PostEntry[];
 }
@@ -16,9 +17,13 @@ const Home: NextPage<PageProps> = ({ entries }) => {
   );
 };
 
-export const getStaticProps = async () => ({
-  props: {
-    entries: await getPage(),
-  },
-});
+export const getStaticProps = async () => {
+  const entries = await getPage();
+  await generateRSSFeed(entries);
+  return {
+    props: {
+      entries,
+    },
+  };
+};
 export default Home;
