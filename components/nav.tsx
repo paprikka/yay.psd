@@ -29,7 +29,7 @@ export const Nav = () => {
           <NavLink to="/about" currentPath={router.pathname} label="About" />
         </li>
         <li className={styles.item}>
-          <NavLink to="/contact" currentPath={router.pathname} label="Shhh!" />
+          <NavLink to="/shhh" currentPath={router.pathname} label="Shhh!" />
         </li>
       </ul>
     </nav>
