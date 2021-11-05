@@ -1,0 +1,29 @@
+.followingOptions {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  margin-top: 1rem;
+}
+
+.followingOptionItem {
+  text-align: center;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.followingOptionItem a {
+  padding: 0;
+  width: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.followingOptionItem:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.followingOptionsIcon {
+}

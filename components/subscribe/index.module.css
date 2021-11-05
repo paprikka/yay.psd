@@ -1,0 +1,78 @@
+.subscribe {
+  display: flex;
+  justify-content: stretch;
+  margin: 1rem 0;
+}
+
+.subscribeActive {
+  pointer-events: none;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.input {
+  padding: 1rem;
+  border: 2px solid var(--text-color);
+  background: var(--white-color);
+  font-family: inherit;
+  font-weight: 600;
+
+  margin: 0;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.input:focus {
+  outline: none;
+  opacity: 1;
+}
+
+.submitButton {
+  appearance: none;
+  font-family: inherit;
+  font-weight: 600;
+  background-color: var(--text-color);
+  color: var(--white-color);
+  border: none;
+  font-size: 0.75rem;
+  transition: 0.2s background-color, 0.2s transform ease-in-out;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: black;
+}
+
+.submitButton[disabled] {
+  opacity: 0.7;
+}
+
+.done,
+.error {
+  border: 2px solid var(--text-color);
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.retryButton {
+  border: 2px solid var(--text-color);
+  font: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.retryButton:hover {
+  opacity: 0.8;
+}
+
+.retryButton:active {
+  opacity: 1;
+  background-color: var(--text-color);
+  color: var(--page-bg-color);
+}
