@@ -47,3 +47,8 @@
   left: -0.75rem;
   top: -0.04rem;
 }
+
+.container .note {
+  padding: 1rem;
+  border: 1px dashed var(--text-color);
+}
