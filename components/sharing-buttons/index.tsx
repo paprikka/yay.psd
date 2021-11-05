@@ -23,10 +23,10 @@ export const SharingButtons: FC<SharingButtonsProps> = ({ postUrl }) => {
   return (
     <div className={styles.container}>
       <button className={styles.share} onClick={onShareClick}>
-        <Image src={shareImg} alt="Share" />
+        <Image priority src={shareImg} alt="Share" />
       </button>
       <button className={styles.follow}>
-        <Image src={followImg} alt="Follow" />
+        <Image priority src={followImg} alt="Follow" />
       </button>
 
       <div
