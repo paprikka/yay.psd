@@ -17,7 +17,7 @@ export const SharingButtons: FC<SharingButtonsProps> = ({ postUrl }) => {
   const onShareClick = () => {
     share(postUrl)
       .then(() => setIsToastVisible(true))
-      .then(wait(2000))
+      .then(wait(3000))
       .then(() => setIsToastVisible(false));
   };
   return (
