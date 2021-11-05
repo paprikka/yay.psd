@@ -1,11 +1,10 @@
-import styles from "./index.module.css";
-import { PostEntry } from "../../data/contentful";
 import { FC } from "react";
+import { PostEntry } from "../../data/contentful";
 import { formatDate } from "../../data/format-date";
-
-import { Separator } from "./separator";
 import { AssetRenderer } from "../renderers/asset";
 import { BottomNavLink } from "./bottom-nav-link";
+import styles from "./index.module.css";
+import { Separator } from "./separator";
 
 interface SinglePostProps {
   entry: PostEntry;
@@ -26,7 +25,7 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
   return (
     <div className={styles.container}>
       <div className={styles.meta}>
-        <h1>{entry.title}</h1>
+        <h1 id="et">{entry.title}</h1>
         <p className={styles.createdAt}>{formatDate(entry.publishedAt)}</p>
         {entry.description ? (
           <p className={styles.description}>{entry.description}</p>
@@ -41,13 +40,13 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
       ))}
       <div className={styles.nav}>
         <BottomNavLink
-          to={`/p/${previousPostId}`}
+          to={`/p/${previousPostId}#et`}
           isDisabled={!previousPostId}
           type="prev"
         />
-        <BottomNavLink to={`/p/${randomPostId}`} type="random" />
+        <BottomNavLink to={`/p/${randomPostId}#et`} type="random" />
         <BottomNavLink
-          to={`/p/${nextPostId}`}
+          to={`/p/${nextPostId}#et`}
           isDisabled={!nextPostId}
           type="next"
         />
