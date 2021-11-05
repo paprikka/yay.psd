@@ -17,7 +17,7 @@ export const PageContainer: FC<PageContainerProps> = ({ children }) => {
     <div className={styles.container}>
       <Link href="/">
         <a className={styles.siteLogo}>
-          <Image src={logo} alt="yay.psd" />
+          <Image priority src={logo} alt="yay.psd" />
         </a>
       </Link>
       <Nav />
