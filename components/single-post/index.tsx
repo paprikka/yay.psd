@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { PostEntry } from "../../data/contentful";
 import { formatDate } from "../../data/format-date";
+import { siteConfig } from "../../data/site-config";
 import { AssetRenderer } from "../renderers/asset";
 import { SharingButtons } from "../sharing-buttons";
 import { BottomNavLink } from "./bottom-nav-link";
@@ -11,6 +12,17 @@ interface SinglePostProps {
   entry: PostEntry;
   allPostIds: string[];
 }
+
+const getEntryUrl = (
+  postId: string,
+  scrollToContent: boolean = false,
+  absolute: boolean = false
+) => {
+  const baseUrl = absolute ? siteConfig.url : "";
+  const anchor = scrollToContent ? "#et" : "";
+
+  return `${baseUrl}/p/${postId}${anchor}`;
+};
 
 export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
   const entryIndex = allPostIds.findIndex((pId) => pId === entry.id);
@@ -37,19 +49,21 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
         <div key={image.id} className={styles.imageWrapper}>
           <AssetRenderer entry={entry} image={image} />
           <Separator index={ind} max={entry.images.length - 1}>
-            {ind === entry.images.length - 1 ? <SharingButtons /> : null}
+            {ind === entry.images.length - 1 ? (
+              <SharingButtons postUrl={getEntryUrl(entry.id, false, true)} />
+            ) : null}
           </Separator>
         </div>
       ))}
       <div className={styles.nav}>
         <BottomNavLink
-          to={`/p/${previousPostId}#et`}
+          to={getEntryUrl(previousPostId || "", true)}
           isDisabled={!previousPostId}
           type="prev"
         />
-        <BottomNavLink to={`/p/${randomPostId}#et`} type="random" />
+        <BottomNavLink to={getEntryUrl(randomPostId, true)} type="random" />
         <BottomNavLink
-          to={`/p/${nextPostId}#et`}
+          to={getEntryUrl(nextPostId || "", true)}
           isDisabled={!nextPostId}
           type="next"
         />

@@ -1,18 +1,44 @@
-import { FC } from "react";
-import styles from "./index.module.css";
 import Image from "next/image";
-import shareImg from "./button-share.png";
+import { FC, useState } from "react";
 import followImg from "./button-follow.png";
+import shareImg from "./button-share.png";
+import styles from "./index.module.css";
+import { share } from "./share";
 
-export const SharingButtons: FC = () => {
+const wait = (time: number) => () => new Promise((r) => setTimeout(r, time));
+
+interface SharingButtonsProps {
+  postUrl: string;
+}
+
+export const SharingButtons: FC<SharingButtonsProps> = ({ postUrl }) => {
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
+  const onShareClick = () => {
+    share(postUrl)
+      .then(() => setIsToastVisible(true))
+      .then(wait(2000))
+      .then(() => setIsToastVisible(false));
+  };
   return (
     <div className={styles.container}>
-      <button className={styles.share}>
+      <button className={styles.share} onClick={onShareClick}>
         <Image src={shareImg} alt="Share" />
       </button>
       <button className={styles.follow}>
         <Image src={followImg} alt="Follow" />
       </button>
+
+      <div
+        className={
+          isToastVisible
+            ? `${styles.toast} ${styles.toastActive}`
+            : styles.toast
+        }
+      >
+        <div className={styles.toastContent}>URL copied to clipboard</div>
+        <div className={styles.toastBackground} />
+      </div>
     </div>
   );
 };

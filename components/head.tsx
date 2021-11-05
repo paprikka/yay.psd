@@ -26,7 +26,7 @@ export const PageHead: FC<PageHeadProps> = (overrides) => {
   return (
     <Head>
       <meta charSet="UTF-8" />
-      <link rel="icon" id="favicon" type="image/png" href="favicon.png" />
+      <link rel="icon" id="favicon" type="image/png" href="/favicon.png" />
       <link
         rel="alternate"
         type="application/rss+xml"
