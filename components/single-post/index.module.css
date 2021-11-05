@@ -2,11 +2,6 @@
   --separator-height: 5rem;
 }
 
-.imageWrapper {
-  margin-bottom: calc(var(--separator-height) + 0.25rem);
-  position: relative;
-}
-
 .meta {
   margin-bottom: 2rem;
 }

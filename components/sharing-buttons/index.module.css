@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container button {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  width: 6rem;
+  cursor: pointer;
+}
+
+.container button:hover {
+  opacity: 0.8;
+}
+
+.container button:active {
+  position: relative;
+  top: 0.1rem;
+  left: 0.1rem;
+}

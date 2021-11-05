@@ -2,6 +2,7 @@ import { FC } from "react";
 import { PostEntry } from "../../data/contentful";
 import { formatDate } from "../../data/format-date";
 import { AssetRenderer } from "../renderers/asset";
+import { SharingButtons } from "../sharing-buttons";
 import { BottomNavLink } from "./bottom-nav-link";
 import styles from "./index.module.css";
 import { Separator } from "./separator";
@@ -35,7 +36,9 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
       {entry.images.map((image, ind) => (
         <div key={image.id} className={styles.imageWrapper}>
           <AssetRenderer entry={entry} image={image} />
-          <Separator index={ind} max={entry.images.length - 1} />
+          <Separator index={ind} max={entry.images.length - 1}>
+            {ind === entry.images.length - 1 ? <SharingButtons /> : null}
+          </Separator>
         </div>
       ))}
       <div className={styles.nav}>

@@ -1,9 +1,6 @@
 .separator {
-  position: absolute;
-  bottom: calc(var(--separator-height) * -1);
-  left: 0;
-  right: 0;
   height: var(--separator-height);
+  margin-bottom: 0.25rem;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
