@@ -2,6 +2,7 @@ import { FC } from "react";
 import { PostEntry } from "../../data/contentful";
 import { formatDate } from "../../data/format-date";
 import { siteConfig } from "../../data/site-config";
+import { track } from "../../tracking/track";
 import { AssetRenderer } from "../renderers/asset";
 import { SharingButtons } from "../sharing-buttons";
 import { BottomNavLink } from "./bottom-nav-link";
@@ -61,7 +62,11 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
           isDisabled={!previousPostId}
           type="prev"
         />
-        <BottomNavLink to={getEntryUrl(randomPostId, true)} type="random" />
+        <BottomNavLink
+          to={getEntryUrl(randomPostId, true)}
+          type="random"
+          onClick={() => track("click", "single-post", "random")}
+        />
         <BottomNavLink
           to={getEntryUrl(nextPostId || "", true)}
           isDisabled={!nextPostId}

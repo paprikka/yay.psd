@@ -5,7 +5,7 @@ const collectionName = "newsletter";
 
 const handler: NextApiHandler = async (req, res) => {
   if (/^localhost/gi.test(req.headers.host || "")) {
-    res.status(418).send("as");
+    res.status(200).send("k thx");
     return;
   }
 

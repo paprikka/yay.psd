@@ -1,6 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import { FC, useState } from "react";
+import { track } from "../../tracking/track";
 import followImg from "./button-follow.png";
 import shareImg from "./button-share.png";
 import styles from "./index.module.css";
@@ -16,6 +17,7 @@ export const SharingButtons: FC<SharingButtonsProps> = ({ postUrl }) => {
   const [isToastVisible, setIsToastVisible] = useState(false);
   const router = useRouter();
   const onShareClick = () => {
+    track("click", "single-post", "share");
     share(postUrl)
       .then(() => setIsToastVisible(true))
       .then(wait(3000))
@@ -23,6 +25,7 @@ export const SharingButtons: FC<SharingButtonsProps> = ({ postUrl }) => {
   };
 
   const onFollowClick = () => {
+    track("click", "single-post", "follow");
     router.push("/shhh");
   };
   return (

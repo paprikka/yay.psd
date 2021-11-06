@@ -6,12 +6,15 @@ interface BottomNavLinkProps {
   to: string;
   isDisabled?: boolean;
   type: "next" | "prev" | "random";
+  onClick?: () => void;
 }
 
+const noop = () => {};
 export const BottomNavLink: FC<BottomNavLinkProps> = ({
   to,
   isDisabled,
   type,
+  onClick,
 }) => {
   let variantClass = "";
   if (type === "next") variantClass = styles.navLinkNext;
@@ -29,6 +32,7 @@ export const BottomNavLink: FC<BottomNavLinkProps> = ({
   return (
     <Link href={to}>
       <a
+        onClick={onClick || noop}
         className={`${styles.navLink} ${variantClass}`}
         role="img"
         aria-label={type}

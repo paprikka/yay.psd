@@ -10,6 +10,7 @@ import styles from "./shhh.module.css";
 import twitterImg from "../components/twitter.svg";
 import feedImg from "../components/feed.svg";
 import instaImg from "../components/instagram.svg";
+import { track } from "../tracking/track";
 
 interface PageProps {}
 const Shhh: NextPage<PageProps> = () => (
@@ -32,7 +33,10 @@ const Shhh: NextPage<PageProps> = () => (
       <div className={styles.followingOptions}>
         <div className={styles.followingOptionItem}>
           <Link href="/rss.xml">
-            <a target="_blank">
+            <a
+              target="_blank"
+              onClick={() => track("click", "subscribe", "rss")}
+            >
               <Image
                 className={styles.followingOptionsIcon}
                 src={feedImg}
@@ -44,7 +48,11 @@ const Shhh: NextPage<PageProps> = () => (
         </div>
         <div className={styles.followingOptionItem}>
           <Link href="https://twitter.com/yay_psd">
-            <a target="_blank">
+            <a
+              rel="nofollow"
+              target="_blank"
+              onClick={() => track("click", "subscribe", "twitter")}
+            >
               <Image
                 className={styles.followingOptionsIcon}
                 src={twitterImg}
@@ -56,7 +64,11 @@ const Shhh: NextPage<PageProps> = () => (
         </div>
         <div className={styles.followingOptionItem}>
           <Link href="https://instagram.com/yay.psd">
-            <a target="_blank">
+            <a
+              rel="nofollow"
+              target="_blank"
+              onClick={() => track("click", "subscribe", "instagram")}
+            >
               <Image
                 className={styles.followingOptionsIcon}
                 src={instaImg}

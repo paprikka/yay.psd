@@ -5,6 +5,7 @@ import React, {
   MouseEventHandler,
   useState,
 } from "react";
+import { track } from "../../tracking/track";
 
 type SubStatus = "idle" | "active" | "complete" | "error";
 
@@ -20,7 +21,7 @@ export const Subscribe = () => {
 
   const send = () => {
     setStatus("active");
-
+    track("submit", "subscribe", "send");
     fetch("/api/newsletter", {
       method: "post",
       credentials: "omit",
@@ -29,8 +30,14 @@ export const Subscribe = () => {
       .then((res) => {
         if (!res.ok) return Promise.reject();
       })
-      .then(() => setStatus("complete"))
-      .catch(() => setStatus("error"));
+      .then(() => {
+        setStatus("complete");
+        track("submit", "subscribe", "complete");
+      })
+      .catch(() => {
+        track("submit", "subscribe", "error");
+        setStatus("error");
+      });
   };
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();

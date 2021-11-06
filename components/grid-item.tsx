@@ -6,16 +6,21 @@ import { FC } from "react";
 import { formatDate } from "../data/format-date";
 interface GridItemProps {
   entry: PostEntry;
+  onClick: (entry: PostEntry) => void;
 }
 
 import placeholderImg from "./placeholder.png";
 import { AssetRenderer } from "./renderers/asset";
+import { track } from "../tracking/track";
 
 export const GridItem: FC<GridItemProps> = ({ entry }) => {
   const cover = entry.images[0];
   return (
     <Link href={`/p/${entry.id}`}>
-      <a className={styles.container}>
+      <a
+        className={styles.container}
+        onClick={() => track("click", "all-posts", entry.slug || "(no-slug)")}
+      >
         <div className={styles.imageWrapper}>
           {cover ? (
             <AssetRenderer entry={entry} image={cover} />
