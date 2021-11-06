@@ -1,13 +1,13 @@
 ## TODO
 
-[ ] Upload content
+[x] Upload content
 [ ] Better image/video transitions
-[ ] About me copy and links
+[x] About me copy and links
 [ ] Twitter syndication
-[ ] Cache Contentful assets
-[ ] RSS feed
+[x] Cache Contentful assets
+[x] RSS feed
 [ ] Shop
-[ ] Lazy video (with default aspect ratios?)
+[-] Lazy video (with default aspect ratios?)
 [x] OpenGraph tags
 [x] Display post descriptions
 [x] Render video content
