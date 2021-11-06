@@ -46,7 +46,13 @@ const toPostEntry = (
   description: contentfulEntry.fields.description || null,
 });
 
-const getAllPostEntries = () => {
+let cachedPostEntries: Entry<ContentfulEntryProps>[] | null = null;
+const getAllPostEntries = (): Promise<Entry<ContentfulEntryProps>[]> => {
+  if (cachedPostEntries) {
+    console.log("Returning cached Contentful post entries");
+    return Promise.resolve(cachedPostEntries);
+  }
+
   const client = createClient({
     accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN!,
     space: process.env.CF_SPACE_ID!,
@@ -57,7 +63,11 @@ const getAllPostEntries = () => {
       order: "-fields.publicationDateOverride,-sys.createdAt",
       content_type: "imagePost",
     })
-    .then((collection) => collection.items);
+    .then((collection) => collection.items)
+    .then((entries) => {
+      cachedPostEntries = entries;
+      return entries;
+    });
 };
 export const getAllPostIds = (): Promise<string[]> =>
   getAllPostEntries().then((items) => items.map((item) => item.sys.id));
