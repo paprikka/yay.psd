@@ -6,6 +6,7 @@ interface ContentfulEntryProps {
   slug?: string;
   description?: string;
   publicationDateOverride?: string;
+  syndicateToTwitter?: boolean;
 }
 
 export interface PostEntry {
@@ -15,6 +16,7 @@ export interface PostEntry {
   images: PostImage[];
   publishedAt: string;
   description: string | null;
+  syndicateToTwitter: boolean;
 }
 
 export interface PostImage {
@@ -44,6 +46,7 @@ const toPostEntry = (
     contentfulEntry.fields.publicationDateOverride ||
     contentfulEntry.sys.createdAt,
   description: contentfulEntry.fields.description || null,
+  syndicateToTwitter: contentfulEntry.fields.syndicateToTwitter || false,
 });
 
 let cachedPostEntries: Entry<ContentfulEntryProps>[] | null = null;
