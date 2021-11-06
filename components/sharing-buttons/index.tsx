@@ -1,3 +1,4 @@
+import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import { FC, useState } from "react";
 import followImg from "./button-follow.png";
@@ -13,19 +14,23 @@ interface SharingButtonsProps {
 
 export const SharingButtons: FC<SharingButtonsProps> = ({ postUrl }) => {
   const [isToastVisible, setIsToastVisible] = useState(false);
-
+  const router = useRouter();
   const onShareClick = () => {
     share(postUrl)
       .then(() => setIsToastVisible(true))
       .then(wait(3000))
       .then(() => setIsToastVisible(false));
   };
+
+  const onFollowClick = () => {
+    router.push("/shhh");
+  };
   return (
     <div className={styles.container}>
       <button className={styles.share} onClick={onShareClick}>
         <Image priority src={shareImg} alt="Share" />
       </button>
-      <button className={styles.follow}>
+      <button className={styles.follow} onClick={onFollowClick}>
         <Image priority src={followImg} alt="Follow" />
       </button>
 
