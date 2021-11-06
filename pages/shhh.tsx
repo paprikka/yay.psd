@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import feedImg from "../components/feed.svg";
 import { PageHead } from "../components/head";
+import instaImg from "../components/instagram.svg";
 import { PageContainer } from "../components/page-container";
 import headerImg from "../components/shhh.png";
 import { Subscribe } from "../components/subscribe";
+import twitterImg from "../components/twitter.svg";
+import { track } from "../tracking/track";
 import sharedStyles from "./about.module.css";
 import styles from "./shhh.module.css";
-import twitterImg from "../components/twitter.svg";
-import feedImg from "../components/feed.svg";
-import instaImg from "../components/instagram.svg";
-import { track } from "../tracking/track";
 
 interface PageProps {}
 const Shhh: NextPage<PageProps> = () => (

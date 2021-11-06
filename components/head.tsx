@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { FC } from "react";
-import { SiteConfig, siteConfig, SiteConfigImage } from "../data/site-config";
+import { siteConfig, SiteConfigImage } from "../data/site-config";
 import { renderOGMeta } from "./render-og-meta";
 
 interface PageHeadProps {

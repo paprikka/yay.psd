@@ -1,17 +1,15 @@
 import React, {
   ChangeEventHandler,
-  FC,
   FormEventHandler,
   MouseEventHandler,
   useState,
 } from "react";
 import { track } from "../../tracking/track";
+import styles from "./index.module.css";
 
 type SubStatus = "idle" | "active" | "complete" | "error";
 
 const emailExpr = /^[^@]+@\w+(\.\w+)+\w$/i;
-
-import styles from "./index.module.css";
 
 export const Subscribe = () => {
   const [email, setEmail] = useState("");
