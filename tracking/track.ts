@@ -1,7 +1,10 @@
 export const track = (eventType: string, viewId: string, eventId: string) => {
-  if (!umami) return;
+  if (!("umami" in window)) return;
   if (location.host.startsWith("localhost")) {
-    console.log(`[track] ${eventType}:${viewId}:${eventId}`);
+    console.log(
+      `[track] %c${eventType}:${viewId}:${eventId}`,
+      "color: white; background: blue; "
+    );
     return;
   }
   umami(`${eventType}:${viewId}:${eventId}`);
