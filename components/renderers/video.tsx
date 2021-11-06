@@ -1,17 +1,26 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { PostImage } from "../../data/contentful";
 import styles from "./video.module.css";
 
 interface VideoRendererProps {
   image: PostImage;
 }
-export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => (
-  <video
-    src={"https:" + image.url}
-    className={styles.video}
-    muted
-    autoPlay
-    loop
-    playsInline
-  />
-);
+export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const handleCanPlayThrough = () => {
+    setIsLoading(false);
+  };
+  return (
+    <video
+      src={"https:" + image.url}
+      className={
+        isLoading ? `${styles.video} ${styles.videoLoading}` : styles.video
+      }
+      muted
+      autoPlay
+      loop
+      playsInline
+      onCanPlayThrough={handleCanPlayThrough}
+    />
+  );
+};
