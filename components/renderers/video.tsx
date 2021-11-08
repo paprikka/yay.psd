@@ -23,6 +23,8 @@ export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
       playsInline
       autoPlay
       onCanPlayThrough={handleCanPlayThrough}
-    />
+    >
+      <source data-src={"https:" + image.url} type="video/mp4" />
+    </video>
   );
 };
