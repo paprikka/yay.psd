@@ -2,9 +2,12 @@ import { FC, useState } from "react";
 import { PostImage } from "../../data/contentful";
 import styles from "./video.module.css";
 
+import posterImg from "./loading-placeholder.png";
+
 interface VideoRendererProps {
   image: PostImage;
 }
+
 export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
   const [isLoading, setIsLoading] = useState(true);
   const handleCanPlayThrough = () => {
@@ -12,11 +15,13 @@ export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
   };
   return (
     <video
+      data-poster={posterImg.src}
       data-src={"https:" + image.url}
       className={
-        isLoading
-          ? `${styles.video} ${styles.videoLoading} is-lazy`
-          : styles.video
+        [styles.video, "is-lazy"].join(" ")
+        // isLoading
+        //   ? `${styles.video} ${styles.videoLoading} is-lazy`
+        //   : styles.video
       }
       muted
       loop
