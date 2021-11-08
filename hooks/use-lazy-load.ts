@@ -15,6 +15,7 @@ export const useLazyLoad = (selector: string) => {
         const src = video.getAttribute("data-src");
         if (!src) return;
         video.src = src;
+        video.play();
         video.setAttribute("data-is-armed", "true");
       });
     });
