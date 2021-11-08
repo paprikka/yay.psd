@@ -12,9 +12,11 @@ export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
   };
   return (
     <video
-      src={"https:" + image.url}
+      data-src={"https:" + image.url}
       className={
-        isLoading ? `${styles.video} ${styles.videoLoading}` : styles.video
+        isLoading
+          ? `${styles.video} ${styles.videoLoading} is-lazy`
+          : styles.video
       }
       muted
       autoPlay
