@@ -9,9 +9,13 @@ export const useLazyLoad = (selector: string) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const video = entry.target as HTMLVideoElement;
+
+        if (video.src) return;
         const src = video.getAttribute("data-src");
         if (!src) return;
         video.src = src;
+        // video.autoplay = true
+        video.play();
       });
     });
 

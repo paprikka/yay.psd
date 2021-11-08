@@ -47,22 +47,6 @@ const Shhh: NextPage<PageProps> = () => (
           RSS
         </div>
         <div className={styles.followingOptionItem}>
-          <Link href="https://twitter.com/yay_psd">
-            <a
-              rel="nofollow"
-              target="_blank"
-              onClick={() => track("click", "subscribe", "twitter")}
-            >
-              <Image
-                className={styles.followingOptionsIcon}
-                src={twitterImg}
-                alt="Twitter"
-              />
-            </a>
-          </Link>
-          Twitter
-        </div>
-        <div className={styles.followingOptionItem}>
           <Link href="https://instagram.com/yay.psd">
             <a
               rel="nofollow"
@@ -77,6 +61,27 @@ const Shhh: NextPage<PageProps> = () => (
             </a>
           </Link>
           Instagram
+        </div>
+        <div
+          className={`${styles.followingOptionItem} ${styles.followingOptionItemDisabled}`}
+        >
+          <Link href="https://twitter.com/yay_psd">
+            <a
+              rel="nofollow"
+              target="_blank"
+              onClick={(e) => {
+                e.preventDefault();
+                track("click", "subscribe", "twitter");
+              }}
+            >
+              <Image
+                className={styles.followingOptionsIcon}
+                src={twitterImg}
+                alt="Twitter"
+              />
+            </a>
+          </Link>
+          Twitter
         </div>
       </div>
     </article>

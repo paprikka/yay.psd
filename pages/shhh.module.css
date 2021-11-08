@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: row;
   align-content: flex-start;
+  align-items: baseline;
   margin-top: 1rem;
+  margin-bottom: 6rem;
 }
 
 .followingOptionItem {
@@ -21,9 +23,11 @@
   margin-bottom: 0.5rem;
 }
 
-.followingOptionItem:not(:last-child) {
-  margin-right: 2rem;
+.followingOptionItemDisabled,
+.followingOptionItemDisabled a {
+  cursor: url(../components/no-twitter-cursor.png), auto;
 }
 
-.followingOptionsIcon {
+.followingOptionItem:not(:last-child) {
+  margin-right: 2rem;
 }
