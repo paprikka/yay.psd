@@ -10,12 +10,12 @@ export const useLazyLoad = (selector: string) => {
         if (!entry.isIntersecting) return;
         const video = entry.target as HTMLVideoElement;
 
+        if (video.getAttribute("data-is-armed")) return;
         if (video.src) return;
         const src = video.getAttribute("data-src");
         if (!src) return;
         video.src = src;
-        // video.autoplay = true
-        video.play();
+        video.setAttribute("data-is-armed", "true");
       });
     });
 

@@ -21,6 +21,7 @@ export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
       muted
       loop
       playsInline
+      autoPlay
       onCanPlayThrough={handleCanPlayThrough}
     />
   );
