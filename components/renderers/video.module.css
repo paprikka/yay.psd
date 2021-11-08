@@ -1,12 +1,5 @@
 .video {
   width: 100%;
-  background: url("./loading-placeholder.png");
-  background-position: center;
-  background-size: cover;
-}
-
-.videoLoading {
-  animation: loop 0.7s 0s linear infinite alternate;
 }
 
 @keyframes loop {
