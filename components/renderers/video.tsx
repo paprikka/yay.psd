@@ -15,14 +15,9 @@ export const VideoRenderer: FC<VideoRendererProps> = ({ image }) => {
   };
   return (
     <video
-      data-poster={posterImg.src}
+      // data-poster={posterImg.src}
       data-src={"https:" + image.url}
-      className={
-        [styles.video, "is-lazy"].join(" ")
-        // isLoading
-        //   ? `${styles.video} ${styles.videoLoading} is-lazy`
-        //   : styles.video
-      }
+      className={`${styles.video} is-lazy`}
       muted
       loop
       playsInline
