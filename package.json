@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "tdd": "jest --watch"
   },
   "dependencies": {
     "@types/twitter": "^1.7.1",
