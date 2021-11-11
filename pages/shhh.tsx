@@ -71,8 +71,7 @@ const Shhh: NextPage<PageProps> = () => (
                         <a
                             rel='nofollow'
                             target='_blank'
-                            onClick={(e) => {
-                                e.preventDefault()
+                            onClick={() => {
                                 track('click', 'subscribe', 'twitter')
                             }}
                         >
