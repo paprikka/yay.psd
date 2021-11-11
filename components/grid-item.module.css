@@ -1,42 +1,42 @@
 .container {
-  display: block;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 0.2s, opacity 0.2s;
-  text-decoration: none;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s, opacity 0.2s;
+    text-decoration: none;
 }
 
 .container:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 .container:active {
-  opacity: 1;
-  transform: scale(0.95);
+    opacity: 1;
+    transform: scale(0.95);
 }
 
 /* I don't like CSS modules */
 .link {
-  text-decoration: none;
+    text-decoration: none;
 }
 .imageWrapper {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 .caption {
-  width: 100%;
-  text-align: left;
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  color: var(--link-color);
+    width: 100%;
+    text-align: left;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--link-color);
 }
 
 .title {
-  font-size: 1rem;
-  margin-right: 0.5rem;
-  font-weight: 600;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    font-weight: 600;
 }
 
 .createdAt {
-  font-size: 0.75rem;
-  opacity: 0.6;
+    font-size: 0.75rem;
+    opacity: 0.6;
 }

@@ -1,23 +1,23 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-  font-family: "Courier New", Courier, monospace;
-  --page-bg-color: #ffd900;
-  --text-color: #333;
-  --white-color: #fafafa;
-  --link-color: #333;
+    font-family: 'Courier New', Courier, monospace;
+    --page-bg-color: #ffd900;
+    --text-color: #333;
+    --white-color: #fafafa;
+    --link-color: #333;
 }
 
 html {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 body {
-  width: 100%;
-  background-color: var(--page-bg-color);
-  color: var(--text-color);
+    width: 100%;
+    background-color: var(--page-bg-color);
+    color: var(--text-color);
 }

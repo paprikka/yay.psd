@@ -1,7 +1,7 @@
 .separator {
-  height: var(--separator-height);
-  margin-bottom: 0.25rem;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+    height: var(--separator-height);
+    margin-bottom: 0.25rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }

@@ -1,12 +1,12 @@
 .container {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .entry {
-  padding: 0;
-  margin: 0 0 2rem;
-  -webkit-tap-highlight-color: transparent;
-  transition: 0.2s opacity;
+    padding: 0;
+    margin: 0 0 2rem;
+    -webkit-tap-highlight-color: transparent;
+    transition: 0.2s opacity;
 }

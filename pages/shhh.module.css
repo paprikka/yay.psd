@@ -1,33 +1,33 @@
 .followingOptions {
-  display: flex;
-  flex-direction: row;
-  align-content: flex-start;
-  align-items: baseline;
-  margin-top: 1rem;
-  margin-bottom: 6rem;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: baseline;
+    margin-top: 1rem;
+    margin-bottom: 6rem;
 }
 
 .followingOptionItem {
-  text-align: center;
-  font-size: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    text-align: center;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .followingOptionItem a {
-  padding: 0;
-  width: 2rem;
-  display: block;
-  margin-bottom: 0.5rem;
+    padding: 0;
+    width: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 .followingOptionItemDisabled,
 .followingOptionItemDisabled a {
-  cursor: url(../components/no-twitter-cursor.png), auto;
+    cursor: url(../components/no-twitter-cursor.png), auto;
 }
 
 .followingOptionItem:not(:last-child) {
-  margin-right: 2rem;
+    margin-right: 2rem;
 }

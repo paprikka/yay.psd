@@ -1,27 +1,27 @@
 .container {
-  --separator-height: 5rem;
+    --separator-height: 5rem;
 }
 
 .meta {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .description {
-  white-space: pre-wrap;
+    white-space: pre-wrap;
 }
 
 .title {
-  margin: 0 0 1rem;
-  line-height: 1;
+    margin: 0 0 1rem;
+    line-height: 1;
 }
 
 .createdAt {
-  opacity: 0.6;
-  margin-bottom: 1rem;
+    opacity: 0.6;
+    margin-bottom: 1rem;
 }
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
 }
