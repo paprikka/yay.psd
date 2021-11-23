@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+}
+
+.detector {
+    width: 100vw;
+    height: 50vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
