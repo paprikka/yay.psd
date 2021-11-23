@@ -2,6 +2,12 @@ import { useEffect } from 'react'
 import LazyLoad, { ILazyLoadInstance } from 'vanilla-lazyload'
 // based on https://web.dev/lazy-loading-video/ but simplified quite a bit
 let instance: ILazyLoadInstance | null = null
+
+export const updateLazyLoad = () => {
+    if (!instance) return
+    instance.update()
+}
+
 export const useLazyLoad = (selector: string) => {
     useEffect(() => {
         if (!instance) {
