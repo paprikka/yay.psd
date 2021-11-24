@@ -1,4 +1,4 @@
-import { FC, useEffect, useLayoutEffect, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styles from './index.module.css'
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
 }
 export const InfiniteScrollDetector: FC<Props> = ({ onReach }) => {
     const detectorEl = useRef<HTMLDivElement>(null)
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!detectorEl.current) return
         const callback: IntersectionObserverCallback = (entries) => {
             const hasIntersection = entries.find(
