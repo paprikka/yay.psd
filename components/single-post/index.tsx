@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { PostEntry } from '../../data/contentful'
 import { formatDate } from '../../data/format-date'
 import { siteConfig } from '../../data/site-config'
+import { updateLazyLoad } from '../../hooks/use-lazy-load'
 import { track } from '../../tracking/track'
 import { AssetRenderer } from '../renderers/asset'
 import { SharingButtons } from '../sharing-buttons'
@@ -37,6 +38,11 @@ export const SinglePost: FC<SinglePostProps> = ({ entry, allPostIds }) => {
     const otherPostIds = allPostIds.filter((pId) => pId !== entry.id)
     const randomPostId =
         otherPostIds[Math.floor(Math.random() * otherPostIds.length)]
+
+    useEffect(() => {
+        // TODO: run only if the post contains video assets.
+        updateLazyLoad()
+    }, [entry.id])
 
     return (
         <div className={styles.container}>
