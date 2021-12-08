@@ -1,18 +1,12 @@
 import type { NextPage } from 'next'
-import { ChangeEventHandler, useMemo, useState } from 'react'
-import { Grid } from '../components/grid'
-import { PageHead } from '../components/head'
-import { InfiniteScrollDetector } from '../components/infinite-scroll-detector'
-import { PageContainer } from '../components/page-container'
-import { getPage, PostEntry } from '../data/contentful'
+import { ChangeEventHandler, useEffect, useMemo, useRef, useState } from 'react'
+import { getPage, PostEntry, PostImage } from '../data/contentful'
 import { generateRSSFeed } from '../data/generate-rss'
 import { pushToTwitter } from '../data/twitter/push-to-twitter'
-import { updateLazyLoad } from '../hooks/use-lazy-load'
-import { track } from '../tracking/track'
+import styles from './get-email-template.module.css'
 interface PageProps {
     entries: PostEntry[]
 }
-import styles from './get-email-template.module.css'
 
 const pad = (n: number): string => n.toString().padStart(2, '0')
 const dateToInputVal = (date: Date) =>
@@ -20,6 +14,15 @@ const dateToInputVal = (date: Date) =>
         date.getDate()
     )}`
 
+const assetStyle = { maxWidth: '100%', height: 'auto' }
+const renderAsset = (asset: PostImage) => {
+    if (asset.contentType.startsWith('video'))
+        return <video key={asset.id} src={asset.url} style={assetStyle} />
+
+    // eslint-disable-next-line @next/next/no-img-element
+    // eslint-disable-next-line jsx-a11y/alt-text
+    return <img key={asset.id} src={asset.url} style={assetStyle}></img>
+}
 const week = 7 * 24 * 60 * 60 * 1000
 const EmailTemplate: NextPage<PageProps> = ({ entries }) => {
     const [from, setFrom] = useState<string>(() =>
@@ -33,10 +36,23 @@ const EmailTemplate: NextPage<PageProps> = ({ entries }) => {
     const handleToChange: ChangeEventHandler<HTMLInputElement> = (e) =>
         setTo(e.target.value)
 
-    const entriesToRender = useMemo(
-        () => entries.filter((entry) => true),
-        [from, to]
-    )
+    const entriesToRender = useMemo(() => {
+        const toDate = new Date(to)
+        const fromDate = new Date(from)
+
+        return entries.filter(({ publishedAt }) => {
+            const publishedAtDate = new Date(publishedAt)
+            return publishedAtDate > fromDate && publishedAtDate < toDate
+        })
+    }, [entries, from, to])
+
+    const templateEl = useRef<HTMLDivElement>(null)
+    const [HTMLString, setHTMLString] = useState('')
+
+    useEffect(() => {
+        if (!templateEl.current) return
+        setHTMLString(templateEl.current.innerHTML)
+    }, [])
 
     return (
         <div className={styles.container}>
@@ -59,9 +75,18 @@ const EmailTemplate: NextPage<PageProps> = ({ entries }) => {
                         />
                     </label>
                 </div>
+                <div className={styles.html} ref={templateEl}>
+                    {entriesToRender.map((e) => (
+                        <div key={e.id}>
+                            <div>{e.title}</div>
+
+                            <div>{e.images.map(renderAsset)}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
             <div className={styles.preview}>
-                <pre>{JSON.stringify(entriesToRender, null, 2)}</pre>
+                <pre>{HTMLString}</pre>
             </div>
         </div>
     )
