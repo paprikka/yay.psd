@@ -1,5 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next'
-import { ChangeEventHandler, useEffect, useMemo, useRef, useState } from 'react'
+import {
+    ChangeEventHandler,
+    CSSProperties,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react'
 import { getPage, PostEntry, PostImage } from '../data/contentful'
 import { generateRSSFeed } from '../data/generate-rss'
 import { pushToTwitter } from '../data/twitter/push-to-twitter'
@@ -14,15 +22,50 @@ const dateToInputVal = (date: Date) =>
         date.getDate()
     )}`
 
-const assetStyle = { maxWidth: '100%', height: 'auto' }
-const renderAsset = (asset: PostImage) => {
-    if (asset.contentType.startsWith('video'))
-        return <video key={asset.id} src={asset.url} style={assetStyle} />
-
-    // eslint-disable-next-line @next/next/no-img-element
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return <img key={asset.id} src={asset.url} style={assetStyle}></img>
+const inlineStyles: { [key: string]: CSSProperties } = {
+    assetPreview: { maxWidth: '100%', height: 'auto' },
+    container: {
+        padding: 10,
+        background: '#ffd900',
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 600,
+        marginBottom: 8,
+    },
+    description: {
+        fontSize: 16,
+        marginBottom: '1em',
+    },
+    entry: {
+        marginBottom: 20,
+    },
+    publishedAt: {
+        fontSize: 12,
+    },
 }
+
+const renderAsset = (asset: PostImage, entry: PostEntry) => {
+    if (asset.contentType.startsWith('video'))
+        return (
+            <video
+                key={asset.id}
+                src={asset.url}
+                style={inlineStyles.assetPreview}
+            />
+        )
+
+    // eslint-disable-next-line jsx-a11y/alt-text
+    return (
+        <img
+            key={asset.id}
+            src={asset.url}
+            alt={entry.title}
+            style={inlineStyles.assetPreview}
+        ></img>
+    )
+}
+
 const week = 7 * 24 * 60 * 60 * 1000
 const EmailTemplate: NextPage<PageProps> = ({ entries }) => {
     const [from, setFrom] = useState<string>(() =>
@@ -76,13 +119,23 @@ const EmailTemplate: NextPage<PageProps> = ({ entries }) => {
                     </label>
                 </div>
                 <div className={styles.html} ref={templateEl}>
-                    {entriesToRender.map((e) => (
-                        <div key={e.id}>
-                            <div>{e.title}</div>
+                    <div style={inlineStyles.container}>
+                        {entriesToRender.map((e) => (
+                            <div key={e.id} style={inlineStyles.entry}>
+                                <div style={inlineStyles.publishedAt}>
+                                    {dateToInputVal(new Date(e.publishedAt))}
+                                </div>
+                                <div style={inlineStyles.title}>{e.title}</div>
+                                {e.description ? (
+                                    <p style={inlineStyles.description}>
+                                        {e.description}
+                                    </p>
+                                ) : null}
 
-                            <div>{e.images.map(renderAsset)}</div>
-                        </div>
-                    ))}
+                                {e.images.map((asset) => renderAsset(asset, e))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className={styles.preview}>
