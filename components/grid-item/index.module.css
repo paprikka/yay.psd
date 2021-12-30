@@ -47,10 +47,15 @@
     background-repeat: no-repeat;
     background-size: contain;
 
-    width: 3rem;
+    width: 2rem;
     aspect-ratio: 104/60;
 
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+}
+@media all and (min-width: 440px) {
+    .showMoreIcon {
+        width: 3rem;
+    }
 }
