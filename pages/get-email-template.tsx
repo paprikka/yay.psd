@@ -1,69 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next'
-import {
-    ChangeEventHandler,
-    CSSProperties,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from 'react'
-import { getPage, PostEntry, PostImage } from '../data/contentful'
+import { ChangeEventHandler, useEffect, useMemo, useRef, useState } from 'react'
+import { dateToInputVal } from '../components/get-email-template/date-utils'
+import { EmailTemplatePreviewContent } from '../components/get-email-template/preview-content'
+import { getPage, PostEntry } from '../data/contentful'
 import { generateRSSFeed } from '../data/generate-rss'
 import { pushToTwitter } from '../data/twitter/push-to-twitter'
 import styles from './get-email-template.module.css'
 interface PageProps {
     entries: PostEntry[]
-}
-
-const pad = (n: number): string => n.toString().padStart(2, '0')
-const dateToInputVal = (date: Date) =>
-    `${pad(date.getFullYear())}-${pad(date.getMonth() + 1)}-${pad(
-        date.getDate()
-    )}`
-
-const inlineStyles: { [key: string]: CSSProperties } = {
-    assetPreview: { maxWidth: '100%', height: 'auto' },
-    container: {
-        padding: 10,
-        background: '#ffd900',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 600,
-        marginBottom: 8,
-    },
-    description: {
-        fontSize: 16,
-        marginBottom: '1em',
-    },
-    entry: {
-        marginBottom: 20,
-    },
-    publishedAt: {
-        fontSize: 12,
-    },
-}
-
-const renderAsset = (asset: PostImage, entry: PostEntry) => {
-    if (asset.contentType.startsWith('video'))
-        return (
-            <video
-                key={asset.id}
-                src={asset.url}
-                style={inlineStyles.assetPreview}
-            />
-        )
-
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return (
-        <img
-            key={asset.id}
-            src={asset.url}
-            alt={entry.title}
-            style={inlineStyles.assetPreview}
-        ></img>
-    )
 }
 
 const week = 7 * 24 * 60 * 60 * 1000
@@ -119,23 +64,7 @@ const EmailTemplate: NextPage<PageProps> = ({ entries }) => {
                     </label>
                 </div>
                 <div className={styles.html} ref={templateEl}>
-                    <div style={inlineStyles.container}>
-                        {entriesToRender.map((e) => (
-                            <div key={e.id} style={inlineStyles.entry}>
-                                <div style={inlineStyles.publishedAt}>
-                                    {dateToInputVal(new Date(e.publishedAt))}
-                                </div>
-                                <div style={inlineStyles.title}>{e.title}</div>
-                                {e.description ? (
-                                    <p style={inlineStyles.description}>
-                                        {e.description}
-                                    </p>
-                                ) : null}
-
-                                {e.images.map((asset) => renderAsset(asset, e))}
-                            </div>
-                        ))}
-                    </div>
+                    <EmailTemplatePreviewContent entries={entriesToRender} />
                 </div>
             </div>
             <div className={styles.preview}>
