@@ -1,5 +1,6 @@
 .container {
     --separator-height: 5rem;
+    max-width: 100%;
 }
 
 .meta {
@@ -8,6 +9,8 @@
 
 .description {
     white-space: pre-wrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
 }
 
 .title {
