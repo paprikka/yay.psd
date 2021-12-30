@@ -36,6 +36,9 @@ export const GridItem: FC<GridItemProps> = ({ entry, onClick }) => {
                         </span>
                     </div>
                 </div>
+                {entry.images.length > 1 ? (
+                    <div className={styles.showMoreIcon}></div>
+                ) : null}
             </a>
         </Link>
     )

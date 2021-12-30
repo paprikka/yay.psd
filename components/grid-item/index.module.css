@@ -3,6 +3,7 @@
     -webkit-tap-highlight-color: transparent;
     transition: transform 0.2s, opacity 0.2s;
     text-decoration: none;
+    position: relative;
 }
 
 .container:hover {
@@ -39,4 +40,17 @@
 .createdAt {
     font-size: 0.75rem;
     opacity: 0.6;
+}
+
+.showMoreIcon {
+    background: url(./show-more.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    width: 3rem;
+    aspect-ratio: 104/60;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
 }
