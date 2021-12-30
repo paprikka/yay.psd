@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { PostEntry } from '../data/contentful'
-import { formatDate } from '../data/format-date'
-import styles from './grid-item.module.css'
+import { PostEntry } from '../../data/contentful'
+import { formatDate } from '../../data/format-date'
+import styles from './index.module.css'
 import placeholderImg from './placeholder.png'
-import { AssetRenderer } from './renderers/asset'
+import { AssetRenderer } from '../renderers/asset'
 interface GridItemProps {
     entry: PostEntry
     onClick: (entry: PostEntry) => void
