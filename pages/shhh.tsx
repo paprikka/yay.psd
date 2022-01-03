@@ -6,7 +6,6 @@ import { PageHead } from '../components/head'
 import instaImg from '../components/instagram.svg'
 import { PageContainer } from '../components/page-container'
 import headerImg from '../components/shhh.png'
-import { Subscribe } from '../components/subscribe'
 import twitterImg from '../components/twitter.svg'
 import { track } from '../tracking/track'
 import sharedStyles from './about.module.css'
@@ -21,15 +20,9 @@ const Shhh: NextPage<PageProps> = () => (
             <h1 style={{ textAlign: 'center' }}>Shhh... subscribe!</h1>
             <p>
                 Hej, things are much friendlier outside of social media. So feel
-                free to follow me directly.
+                free to follow me directly:
             </p>
-            <h3>New stories delivered straight to your inbox:</h3>
-            <p className={sharedStyles.subtitle}>
-                I promise no spam. I just hate ads.
-            </p>
-            <Subscribe />
 
-            <h3>Alternatives:</h3>
             <div className={styles.followingOptions}>
                 <div className={styles.followingOptionItem}>
                     <Link href='/rss.xml'>
@@ -46,6 +39,10 @@ const Shhh: NextPage<PageProps> = () => (
                     </Link>
                     RSS
                 </div>
+            </div>
+
+            <h3 className={styles.followingHeader}>Alternatives:</h3>
+            <div className={styles.followingOptions}>
                 <div className={styles.followingOptionItem}>
                     <Link href='https://instagram.com/yay.psd'>
                         <a

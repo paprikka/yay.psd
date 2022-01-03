@@ -1,8 +1,14 @@
 .followingOptions {
     display: flex;
     flex-direction: row;
-    align-content: flex-start;
+    align-content: center;
     align-items: baseline;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.followingOptions:last-child {
     margin-top: 1rem;
     margin-bottom: 6rem;
 }
@@ -30,4 +36,8 @@
 
 .followingOptionItem:not(:last-child) {
     margin-right: 2rem;
+}
+
+.followingHeader {
+    text-align: center;
 }
