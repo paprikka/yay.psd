@@ -18,13 +18,10 @@ const Shhh: NextPage<PageProps> = () => (
         <article className={sharedStyles.container}>
             <Image src={headerImg} alt='Rafal Pastuszak' />
             <h1 style={{ textAlign: 'center' }}>Shhh... subscribe!</h1>
-            <p>
-                Hej, things are much friendlier outside of social media. So feel
-                free to follow me directly:
-            </p>
-
             <div className={styles.followingOptions}>
-                <div className={styles.followingOptionItem}>
+                <div
+                    className={`${styles.followingOptionItem} ${styles.followingOptionItemFav}`}
+                >
                     <Link href='/rss.xml'>
                         <a
                             target='_blank'
@@ -39,10 +36,7 @@ const Shhh: NextPage<PageProps> = () => (
                     </Link>
                     RSS
                 </div>
-            </div>
 
-            <h3 className={styles.followingHeader}>Alternatives:</h3>
-            <div className={styles.followingOptions}>
                 <div className={styles.followingOptionItem}>
                     <Link href='https://instagram.com/yay.psd'>
                         <a
@@ -61,9 +55,7 @@ const Shhh: NextPage<PageProps> = () => (
                     </Link>
                     Instagram
                 </div>
-                <div
-                    className={`${styles.followingOptionItem} ${styles.followingOptionItemDisabled}`}
-                >
+                <div className={styles.followingOptionItem}>
                     <Link href='https://twitter.com/yay_psd'>
                         <a
                             rel='nofollow'
@@ -82,6 +74,10 @@ const Shhh: NextPage<PageProps> = () => (
                     Twitter
                 </div>
             </div>
+            <p>
+                Hej, things are much friendlier outside of social media. New
+                doodles are pushed to all channels, but why not give RSS a shot!
+            </p>
         </article>
     </PageContainer>
 )
