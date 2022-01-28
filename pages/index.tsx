@@ -21,6 +21,9 @@ const Home: NextPage<PageProps> = ({ entries }) => {
     ]
 
     const handleReach = () => {
+        // Don't track coming back to the first page
+        // if (pageIndex === 0) return
+
         setPageIndex(pageIndex + 1)
         track('infinite-scroll-page', 'all-posts', `${pageIndex + 1}`)
         updateLazyLoad()
