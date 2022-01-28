@@ -5,8 +5,10 @@ export const useRainbowBg = () =>
         const cb = () => {
             const viewportHeight = window.innerHeight
             const contentHeight = document.body.getBoundingClientRect().height
+            const isPortrait = window.screen.width / window.screen.height < 1
+            // Colour wheel spin feels much faster on desktop screens
             const viewportsPerRotation = Math.min(
-                3,
+                isPortrait ? 7 : 20,
                 contentHeight / viewportHeight
             )
             const from = 51
