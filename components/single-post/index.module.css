@@ -7,6 +7,10 @@
     margin-bottom: 2rem;
 }
 
+.title {
+    word-break: break-all;
+}
+
 .description {
     white-space: pre-wrap;
     text-overflow: ellipsis;

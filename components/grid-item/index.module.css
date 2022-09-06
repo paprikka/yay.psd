@@ -35,11 +35,13 @@
     font-size: 1rem;
     margin-right: 0.5rem;
     font-weight: 600;
+    word-break: break-all;
 }
 
 .createdAt {
     font-size: 0.75rem;
     opacity: 0.6;
+    white-space: nowrap;
 }
 
 .showMoreIcon {
