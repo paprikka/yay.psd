@@ -6,7 +6,6 @@ import { InfiniteScrollDetector } from '../components/infinite-scroll-detector'
 import { PageContainer } from '../components/page-container'
 import { getPage, PostEntry } from '../data/contentful'
 import { generateRSSFeed } from '../data/generate-rss'
-import { pushToTwitter } from '../data/twitter/push-to-twitter'
 import { updateLazyLoad } from '../hooks/use-lazy-load'
 import { track } from '../tracking/track'
 interface PageProps {
@@ -38,11 +37,6 @@ const Home: NextPage<PageProps> = ({ entries }) => {
 export const getStaticProps = async () => {
     const entries = await getPage()
     await generateRSSFeed(entries)
-    await pushToTwitter(entries)
-    return {
-        props: {
-            entries,
-        },
-    }
+    return { props: { entries } }
 }
 export default Home
