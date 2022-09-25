@@ -3,7 +3,7 @@ import { getPage } from '../../data/contentful'
 import { pushToTwitter } from '../../data/twitter/push-to-twitter'
 
 const handler: NextApiHandler = async (req, res) => {
-    const authToken = req.headers['authorization']
+    const authToken = req.headers['authorization']?.split(' ')[1]?.trim()
     if (!authToken || authToken !== process.env.POST_BUILD_API_KEY) {
         res.status(401).end()
         return
