@@ -1,0 +1,13 @@
+name: daily-cron
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for content updates, syndicate
+        run: |
+          curl -i \
+          --url 'https://www.potato.horse/api/post-build' \
+          --header 'Authorization: Bearer ${{ secrets.POST_BUILD_API_KEY }}'

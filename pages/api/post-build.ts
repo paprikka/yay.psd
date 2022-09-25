@@ -12,7 +12,7 @@ const handler: NextApiHandler = async (req, res) => {
     const entries = await getPage()
     await pushToTwitter(entries)
 
-    res.json({ entries })
+    res.status(200).end()
 }
 
 export default handler
