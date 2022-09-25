@@ -42,6 +42,11 @@ export const pushToTwitter = async (entries: PostEntry[]) => {
         entriesToSend.map((e) => e.title)
     )
 
+    if (process.env.TWITTER_CONSUMER_KEY === '<local-test>') {
+        console.log('Dry run, exiting early...')
+        return
+    }
+
     const onError = (entry: PostEntry) => () => {
         return db.collection('twitter-syndicated-posts').findOneAndUpdate(
             {
