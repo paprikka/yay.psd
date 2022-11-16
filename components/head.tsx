@@ -56,7 +56,7 @@ export const PageHead: FC<PageHeadProps> = (overrides) => {
                 defer
                 data-domains='www.potato.horse,potato.horse'
                 data-website-id='6e55cbee-bddd-45a4-953a-2198ed2291cf'
-                src='https://sonnet-events.herokuapp.com/umami.js'
+                src='https://sonnet-events.vercel.app/umami.js'
             ></script>
         </Head>
     )
