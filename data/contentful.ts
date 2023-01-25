@@ -65,6 +65,7 @@ const getAllPostEntries = (): Promise<Entry<ContentfulEntryProps>[]> => {
         .getEntries<ContentfulEntryProps>({
             order: '-fields.publicationDateOverride,-sys.createdAt',
             content_type: 'imagePost',
+            limit: 1000,
         })
         .then((collection) => collection.items)
         .then((entries) => {
