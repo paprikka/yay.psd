@@ -3,24 +3,25 @@ import { useEffect, useRef } from 'react'
 export const usePlomk = () => {
     const audioRef = useRef<HTMLAudioElement>()
 
-    function plomkNow(pitchShift = 0.1) {
+    function plomkNow() {
         const audio = audioRef.current
         if (!audio) return
 
-        const originalPlaybackRate = audio.playbackRate
-        const pitchFactor = 1 + Math.random() * pitchShift
-        audio.playbackRate = originalPlaybackRate * pitchFactor
+        audio.currentTime = 0
+        audio.pause()
         audio.play()
     }
 
     useEffect(() => {
-        console.log('Pre-plomking')
-        audioRef.current = new Audio('/sfx/click_2.mp3')
-        audioRef.current.preload = 'auto'
-        audioRef.current.oncanplaythrough = () =>
-            console.log('Probably can plomk (oncanplaythrough)')
+        if (!audioRef.current) {
+            console.log('Plomk: Creating audio element')
+            audioRef.current = new Audio('/sfx/click_2.mp3')
+            audioRef.current.preload = 'auto'
+            audioRef.current.oncanplaythrough = () =>
+                console.log('Probably can plomk (oncanplaythrough)')
+        }
 
-        document.addEventListener('click', (e) => {
+        const onInteract = (e: PointerEvent) => {
             const target = e.target as HTMLElement
             if (!target) return
             const isPlomkable =
@@ -28,8 +29,14 @@ export const usePlomk = () => {
                 target.closest('a, button, select')
             if (!isPlomkable) return
 
-            plomkNow(0)
-        })
+            plomkNow()
+        }
+
+        document.addEventListener('pointerdown', onInteract)
+
+        return () => {
+            document.removeEventListener('pointerdown', onInteract)
+        }
     }, [])
 
     return plomkNow
