@@ -1,23 +1,25 @@
 import { useEffect, useRef } from 'react'
 
+let audio: HTMLAudioElement | null = null
 export const usePlomk = () => {
-    const audioRef = useRef<HTMLAudioElement>()
+    console.log('Plomk: Initializing')
+    async function plomkNow() {
+        if (!audio) {
+            console.log('Plomk: No audio element')
+            return
+        }
 
-    function plomkNow() {
-        const audio = audioRef.current
-        if (!audio) return
+        if (audio.paused) return audio.play()
 
         audio.currentTime = 0
-        audio.pause()
-        audio.play()
     }
 
     useEffect(() => {
-        if (!audioRef.current) {
+        if (!audio) {
             console.log('Plomk: Creating audio element')
-            audioRef.current = new Audio('/sfx/click_2.mp3')
-            audioRef.current.preload = 'auto'
-            audioRef.current.oncanplaythrough = () =>
+            audio = new Audio('/sfx/click_2.mp3')
+            audio.preload = 'auto'
+            audio.oncanplaythrough = () =>
                 console.log('Probably can plomk (oncanplaythrough)')
         }
 
@@ -32,12 +34,12 @@ export const usePlomk = () => {
             plomkNow()
         }
 
-        document.addEventListener('pointerdown', onInteract)
+        document.addEventListener('pointerdown', onInteract, {
+            passive: true,
+        })
 
         return () => {
             document.removeEventListener('pointerdown', onInteract)
         }
     }, [])
-
-    return plomkNow
 }
