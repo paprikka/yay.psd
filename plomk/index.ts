@@ -1,26 +1,67 @@
 import { useEffect, useRef } from 'react'
 
-let audio: HTMLAudioElement | null = null
-export const usePlomk = () => {
-    console.log('Plomk: Initializing')
-    async function plomkNow() {
-        if (!audio) {
-            console.log('Plomk: No audio element')
-            return
+const makePlayer = async (src: string) => {
+    let source: AudioBufferSourceNode | null = null
+    let audioContext = new window.AudioContext()
+    let response = await fetch(src)
+    let arrayBuffer = await response.arrayBuffer()
+    let audioData = await audioContext.decodeAudioData(arrayBuffer)
+
+    source = audioContext.createBufferSource()
+    source.buffer = audioData
+
+    let hasPlayed = false
+
+    // Connect the source to the context's destination (the speakers)
+    source.connect(audioContext.destination)
+
+    const play = () => {
+        if (!source) return
+        if (hasPlayed) {
+            source.stop()
+            source.disconnect()
         }
 
-        if (audio.paused) return audio.play()
+        source = audioContext.createBufferSource()
+        source.buffer = audioData
+        source.connect(audioContext.destination)
+        source.start(0, 0)
+        hasPlayed = true
+    }
 
-        audio.currentTime = 0
+    const dispose = () => {
+        if (!source) return
+        // don't stop the buffer if it hasn't started yet
+        if (source.context.currentTime === 0) return
+
+        source.stop()
+        source.disconnect()
+    }
+
+    return {
+        play,
+        dispose,
+    }
+}
+
+type PlayerAPI = Awaited<ReturnType<typeof makePlayer>>
+
+export const usePlomk = () => {
+    const playerRef = useRef<PlayerAPI | null>(null)
+
+    console.log('Plomk: Initializing')
+    async function plomkNow() {
+        if (!playerRef.current) return
+        console.log('Plomk: Playing')
+        playerRef.current.play()
     }
 
     useEffect(() => {
-        if (!audio) {
+        if (!playerRef.current) {
             console.log('Plomk: Creating audio element')
-            audio = new Audio('/sfx/click_2.mp3')
-            audio.preload = 'auto'
-            audio.oncanplaythrough = () =>
-                console.log('Probably can plomk (oncanplaythrough)')
+            makePlayer('/sfx/click_2.mp3').then((player) => {
+                playerRef.current = player
+            })
         }
 
         const onInteract = (e: PointerEvent) => {
@@ -29,6 +70,7 @@ export const usePlomk = () => {
             const isPlomkable =
                 target.matches('a, button, select') ||
                 target.closest('a, button, select')
+
             if (!isPlomkable) return
 
             plomkNow()
@@ -40,6 +82,8 @@ export const usePlomk = () => {
 
         return () => {
             document.removeEventListener('pointerdown', onInteract)
+            if (!playerRef.current) return
+            playerRef.current.dispose()
         }
     }, [])
 }
