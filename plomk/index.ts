@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-const makePlayer = async (src: string) => {
+// TODO: use Awaited instead
+const makePlayer = async (src: string): Promise<PlayerAPI> => {
     let source: AudioBufferSourceNode | null = null
     let audioContext = new window.AudioContext()
     let response = await fetch(src)
@@ -44,7 +45,10 @@ const makePlayer = async (src: string) => {
     }
 }
 
-type PlayerAPI = Awaited<ReturnType<typeof makePlayer>>
+type PlayerAPI = {
+    play: () => void
+    dispose: () => void
+}
 
 export const usePlomk = () => {
     const playerRef = useRef<PlayerAPI | null>(null)
