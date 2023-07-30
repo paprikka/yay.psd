@@ -24,6 +24,9 @@ export const PageContainer: FC<PageContainerProps> = ({ children }) => {
             </Link>
             <Nav />
             {children}
+            <a rel='me' hidden href='https://mastodon.cloud/@raf'>
+                Mastodon
+            </a>
         </div>
     )
 }
