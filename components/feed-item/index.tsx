@@ -6,14 +6,16 @@ import { formatDate } from '../../data/format-date'
 import styles from './index.module.css'
 import placeholderImg from './placeholder.png'
 import { AssetRenderer } from '../renderers/asset'
-interface GridItemProps {
+
+interface FeedItemProps {
     entry: PostEntry
     onClick: (entry: PostEntry) => void
 }
 
-export const GridItem: FC<GridItemProps> = ({ entry, onClick }) => {
+export const FeedItem: FC<FeedItemProps> = ({ entry, onClick }) => {
     const cover = entry.images[0]
     const handleClick = () => onClick(entry)
+
     return (
         <Link href={`/p/${entry.id}`}>
             <a className={styles.container} onClick={handleClick}>

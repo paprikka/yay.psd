@@ -1,18 +1,18 @@
 import { FC } from 'react'
 import { PostEntry } from '../data/contentful'
-import styles from './grid.module.css'
-import { GridItem } from './grid-item'
+import styles from './feed.module.css'
+import { FeedItem } from './feed-item'
 import { track } from '../tracking/track'
 
-interface GridProps {
+interface FeedProps {
     entries: PostEntry[]
 }
 
-export const Grid: FC<GridProps> = ({ entries }) => (
+export const Feed: FC<FeedProps> = ({ entries }) => (
     <ul className={styles.container}>
         {entries.map((entry) => (
             <li key={entry.id} className={styles.entry}>
-                <GridItem
+                <FeedItem
                     entry={entry}
                     onClick={() =>
                         track('click', 'all-posts', entry.slug || '(no-slug)')

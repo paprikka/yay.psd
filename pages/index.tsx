@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import { Grid } from '../components/grid'
+import { Feed } from '../components/feed'
 import { PageHead } from '../components/head'
 import { InfiniteScrollDetector } from '../components/infinite-scroll-detector'
 import { PageContainer } from '../components/page-container'
@@ -28,7 +28,7 @@ const Home: NextPage<PageProps> = ({ entries }) => {
     return (
         <PageContainer>
             <PageHead />
-            <Grid entries={visibleEntries} />
+            <Feed entries={visibleEntries} />
             <InfiniteScrollDetector onReach={handleReach} />
         </PageContainer>
     )
