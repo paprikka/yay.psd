@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 
-export const useRainbowBg = () =>
+export const useRainbowBg = (enable: boolean) =>
     useEffect(() => {
+        if (!enable) return
         const cb = () => {
             const viewportHeight = window.innerHeight
             const contentHeight = document.body.getBoundingClientRect().height

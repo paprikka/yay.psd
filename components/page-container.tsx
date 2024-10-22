@@ -10,13 +10,26 @@ import { useFavicon } from '../hooks/use-favicon'
 import { useLazyLoad } from '../hooks/use-lazy-load'
 interface PageContainerProps {
     children: React.ReactNode
+    layout?: 'normal' | 'full-width'
+    enableRainbowBg?: boolean
 }
-export const PageContainer: FC<PageContainerProps> = ({ children }) => {
-    useRainbowBg()
+export const PageContainer: FC<PageContainerProps> = ({
+    children,
+    layout = 'normal',
+    enableRainbowBg = true,
+}) => {
+    useRainbowBg(enableRainbowBg)
     useFavicon()
     useLazyLoad('video.is-lazy')
+
     return (
-        <div className={styles.container}>
+        <div
+            className={
+                layout === 'full-width'
+                    ? `${styles.container} ${styles.isFullWidth}`
+                    : styles.container
+            }
+        >
             <Link href='/'>
                 <a className={styles.siteLogo}>
                     <Image priority src={logo} alt='yay.psd' />

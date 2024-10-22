@@ -8,6 +8,10 @@
 
     max-width: 40rem;
     margin: 2rem auto 0;
+
+    &.isFullWidth {
+        max-width: 100%;
+    }
 }
 
 @media all and (min-width: 440px) {

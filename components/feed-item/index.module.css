@@ -20,6 +20,10 @@
 }
 .imageWrapper {
     margin-bottom: 2rem;
+
+    .container.imagesOnly & {
+        margin-block-end: 0;
+    }
 }
 .caption {
     width: 100%;
