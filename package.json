@@ -8,6 +8,7 @@
         "lint": "next lint",
         "test": "jest",
         "tdd": "jest --watch",
+        "typecheck": "pnpm tsc --noEmit",
         "format": "prettier --write __mocks__ components data hooks pages styles tracking"
     },
     "dependencies": {

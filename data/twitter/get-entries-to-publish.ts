@@ -14,14 +14,14 @@ export const getEntriesToPublish = async (db: Db, entries: PostEntry[]) => {
         syndicatedEntries.map((e) => e.title)
     )
 
-    const alreadyPostedIdsArr = (await db
-        .collection('twitter-syndicated-posts')
+    const alreadyPostedIdsArr = await db
+        .collection<{ entryId: string }>('twitter-syndicated-posts')
         .find({
             entryId: {
                 $in: syndicatedEntryIds,
             },
         })
-        .toArray()) as { entryId: string }[]
+        .toArray()
 
     const alreadyPostedIds = new Set(alreadyPostedIdsArr.map((e) => e.entryId))
 
